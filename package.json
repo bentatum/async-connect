@@ -1,7 +1,7 @@
 {
   "name": "redux-await-connect",
   "description": "redux-async-connect / redux-connect for react-router v4.0.x",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "bentatum <bentatum@me.com>",
   "bugs": {
     "url": "https://github.com/bentatum/async-connect/issues"
