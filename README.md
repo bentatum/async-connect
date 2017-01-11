@@ -1,26 +1,26 @@
-# async-connect
+# redux-await-connect
 
 [![npm][npm-image]][npm-url]
 [![travis][travis-image]][travis-url]
 [![standard][standard-image]][standard-url]
 
-[npm-image]: https://img.shields.io/npm/v/async-connect.svg?style=flat-square
-[npm-url]: https://www.npmjs.com/package/async-connect
-[travis-image]: https://img.shields.io/travis/bentatum/async-connect.svg?style=flat-square
-[travis-url]: https://travis-ci.org/bentatum/async-connect
+[npm-image]: https://img.shields.io/npm/v/redux-await-connect.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/redux-await-connect
+[travis-image]: https://img.shields.io/travis/bentatum/redux-await-connect.svg?style=flat-square
+[travis-url]: https://travis-ci.org/bentatum/redux-await-connect
 [standard-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square
 [standard-url]: http://npm.im/standard
 
 ## Install
 
 ```
-npm install async-connect
+npm install redux-await-connect
 ```
 
 ## Usage
 
 ```js
-var asyncConnect = require('async-connect')
+var asyncConnect = require('redux-await-connect')
 ```
 
 ## Contributing
