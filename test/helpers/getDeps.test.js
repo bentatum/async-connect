@@ -17,6 +17,21 @@ describe('helpers/getDeps', () => {
     expect(function () { getDeps(null, props) }).toThrow('asyncConnect requires an array of dependencies passed to it. See docs.')
   })
 
+  test('no async in store', () => {
+    const store = {
+      dispatch: () => {},
+      getState: () => ({})
+    }
+    const deps = [
+      {
+        key: '@@my-app/custom/actionType',
+        promise: () => {}
+      }
+    ]
+    const props = { store }
+    expect(function () { getDeps(deps, props) }).toThrow('asyncConnect requires async module setup in redux state. See docs.')
+  })
+
   test('with deps', () => {
     const store = {
       dispatch: () => {},
