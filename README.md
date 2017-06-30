@@ -14,13 +14,30 @@
 ## Install
 
 ```
-npm install redux-await-connect
+yarn add redux-await-connect 
 ```
 
 ## Usage
 
 ```js
-var asyncConnect = require('redux-await-connect')
+import awaitConnect from 'redux-await-connect'
+
+const enhance = compose(
+  awaitConnect([{
+    key: 'getUser',
+    promise() {
+      return client.get('user', { id: 'xyz' })
+    }
+  }]),
+  connect(({ user }) => ({ user }))
+)
+
+export default enhance(props =>
+  <div>
+    {props.user.name}
+  </div>
+)
+
 ```
 
 ## Contributing
