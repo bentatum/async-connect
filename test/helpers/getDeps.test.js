@@ -1,7 +1,7 @@
 
-import { getDeps } from '../../lib/helpers'
+import { getDeps } from '../../src/lib'
 
-describe('helpers/getDeps', () => {
+describe('getDeps', () => {
 
   test('default', () => {
     expect(function () { getDeps() }).toThrow('asyncConnect requires a redux store')

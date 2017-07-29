@@ -1,0 +1,2 @@
+
+export getDeps from './getDeps'

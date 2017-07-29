@@ -1,24 +1,20 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { getDeps } from './helpers'
+import { getDeps } from './lib'
 
 export default depsMapper => Component => {
   class AsyncConnect extends React.PureComponent {
     componentDidMount () {
-      const props = {
-        ...this.props,
-        ...this.context
-      }
-      getDeps(depsMapper, props)
+      this._getDeps(this.props)
     }
 
     componentWillReceiveProps (next) {
-      const props = {
-        ...next,
-        ...this.context
-      }
-      getDeps(depsMapper, props)
+      this._getDeps(next)
+    }
+
+    _getDeps (props) {
+      getDeps(depsMapper, { ...props, ...this.context })
     }
 
     render () {
