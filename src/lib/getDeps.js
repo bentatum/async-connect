@@ -1,23 +1,23 @@
 
 export default (depsMapper, props = {}) => {
   if (!props.store) {
-    throw new Error('asyncConnect requires a redux store')
+    throw new Error('async-connect requires a redux store')
   }
 
   const state = props.store.getState()
   const deps = typeof depsMapper === 'function' ? depsMapper(props) : depsMapper
 
   if (!Array.isArray(deps)) {
-    throw new Error('asyncConnect requires an array of dependencies passed to it. See docs.')
+    throw new Error('async-connect requires an array of actions.')
   }
 
   if (!state.async || !state.async.statuses) {
-    throw new Error('asyncConnect requires async module setup in redux state. See docs.')
+    throw new Error('async-connect requires an async reducer.')
   }
 
-  deps.forEach(({ key, promise, payload }) => {
-    if (!state.async.statuses[key]) {
-      props.store.dispatch(promise(payload))
+  deps.forEach(dep => {
+    if (!state.async.statuses[dep.type]) {
+      props.store.dispatch(dep.action(dep.payload))
     }
   })
 }

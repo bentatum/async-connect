@@ -1,7 +1,7 @@
 {
   "name": "async-connect",
-  "description": "redux-async-connect / redux-connect for react-router v4.0.x",
-  "version": "0.0.9",
+  "description": "HOC for calling and statusing redux actions on componentDidMount",
+  "version": "1.0.0",
   "author": "bentatum <bentatum@me.com>",
   "bugs": {
     "url": "https://github.com/bentatum/async-connect/issues"
@@ -42,7 +42,8 @@
   "scripts": {
     "prepush": "yarn lint && yarn test",
     "build": "babel -d dist/ src/",
-    "prepublish": "yarn lint && yarn test && npm run build",
+    "prebuild": "yarn lint && yarn test",
+    "prepublish": "npm run build",
     "lint": "standard src/",
     "test": "jest test/"
   }

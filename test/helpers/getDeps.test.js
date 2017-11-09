@@ -4,7 +4,7 @@ import { getDeps } from '../../src/lib'
 describe('getDeps', () => {
 
   test('default', () => {
-    expect(function () { getDeps() }).toThrow('asyncConnect requires a redux store')
+    expect(function () { getDeps() }).toThrow('async-connect requires a redux store')
   })
 
   test('no deps', () => {
@@ -14,37 +14,41 @@ describe('getDeps', () => {
       }
     }
     const store = {  }
-    expect(function () { getDeps(null, props) }).toThrow('asyncConnect requires an array of dependencies passed to it. See docs.')
+    expect(function () { getDeps(null, props) }).toThrow('async-connect requires an array of actions.')
   })
 
   test('no async in store', () => {
+    const type = '@@my-app/custom/actionType'
     const store = {
       dispatch: () => {},
       getState: () => ({})
     }
     const deps = [
       {
-        key: '@@my-app/custom/actionType',
-        promise: () => {}
+        type: '@@my-app/custom/actionType',
+        action: () => {}
       }
     ]
     const props = { store }
-    expect(function () { getDeps(deps, props) }).toThrow('asyncConnect requires async module setup in redux state. See docs.')
+    expect(function () { getDeps(deps, props) }).toThrow('async-connect requires an async reducer.')
   })
 
   test('with deps', () => {
+    const type = '@@my-app/custom/actionType'
     const store = {
       dispatch: () => {},
       getState: () => ({
         async: {
-          statuses: []
+          statuses: {
+            [type]: 'pending'
+          }
         }
       })
     }
     const deps = [
       {
-        key: '@@my-app/custom/actionType',
-        promise: () => {}
+        type,
+        action: () => {}
       }
     ]
     expect(getDeps(deps, { store })).toBeUndefined()

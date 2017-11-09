@@ -7,6 +7,6 @@ import TestProvider from './TestProvider'
 describe('asyncConnect', () => {
   test('defaults without store in context', () => {
     const Component = asyncConnect()('div')
-    expect(() => renderer.create(<Component />)).toThrow('asyncConnect requires a redux store')
+    expect(() => renderer.create(<Component />)).toThrow('async-connect requires a redux store')
   })
 })

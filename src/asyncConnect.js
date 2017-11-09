@@ -1,10 +1,10 @@
 
 import React from 'react'
-import PropTypes from 'prop-types'
+import { object } from 'prop-types'
 import { getDeps } from './lib'
 
 export default depsMapper => Component => {
-  class AsyncConnect extends React.PureComponent {
+  class AsyncConnect extends React.Component {
     componentDidMount () {
       this._getDeps(this.props)
     }
@@ -25,7 +25,7 @@ export default depsMapper => Component => {
   }
 
   AsyncConnect.contextTypes = {
-    store: PropTypes.object.isRequired
+    store: object.isRequired
   }
 
   return AsyncConnect

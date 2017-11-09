@@ -20,23 +20,33 @@ yarn add async-conncect
 ## Usage
 
 ```js
+import { compose } from 'recompact'
 import asyncConnect from 'async-conncect'
+import { connect } from 'react-redux'
 
 const enhance = compose(
-  asyncConnect([{
-    key: 'getUser',
-    promise() {
-      return client.get('user', { id: 'xyz' })
+  // this will call getUser and getOtherThing on componentDidMount as long as it's corresponding status isnt pending, success or failure.
+  asyncConnect([
+    {
+      type: '@@my-app/getUser',
+      action: getUser,
+      payload: {
+        id: 123
+      }
+    },
+    {
+      type: '@@my-app/getOtherThing',
+      action: getOtherThing,
+      payload: {
+        id: 456
+      }
     }
-  }]),
+  ]),
+  // you'll need to map the response of your action, thunk, saga (er, whatever) in your app's state reducer.
   connect(({ user }) => ({ user }))
 )
 
-export default enhance(props =>
-  <div>
-    {props.user.name}
-  </div>
-)
+export default enhance(props => props.user.name
 
 ```
 
